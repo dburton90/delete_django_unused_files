@@ -52,4 +52,4 @@ def delete_unused_files():
 
 
 if __name__ == '__main__':
-    delete_files()
+    delete_unused_files()
