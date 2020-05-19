@@ -7,5 +7,4 @@ Best usage is with IPython
 ```
 ./manage.py shell -i ipython
 %load https://raw.githubusercontent.com/dburton90/delete_django_unused_files/master/delete_unused.py
-delete_unused_files()
 ```
