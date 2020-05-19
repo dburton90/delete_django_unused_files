@@ -41,9 +41,11 @@ def delete_files(to_delete, storages):
             for f in files:
                 storages[key].delete(f)
                 print("- ", f)
+    else:
+        print("Nothing to delete")
 
 
-def delete_unused_files()
+def delete_unused_files():
     f, s = get_files()
     d = find_to_delete_files(f)
     delete_files(d, s)
