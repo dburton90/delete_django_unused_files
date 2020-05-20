@@ -24,7 +24,7 @@ def get_files():
 def find_to_delete_files(all_files, storages):
     to_delete = defaultdict(list)
 
-    for key, storage in storages.items()
+    for key, storage in storages.items():
         for f in listdir('', storage):
             f not in all_files[key]:
                 to_delete[key].append(filename)
