@@ -1,4 +1,4 @@
-from pathlib import Path
+import os
 from collections import defaultdict
 
 from django.db.models import FileField, Q
@@ -21,17 +21,23 @@ def get_files():
     return all_files, storages
 
 
-def find_to_delete_files(all_files):
+def find_to_delete_files(all_files, storages):
     to_delete = defaultdict(list)
 
-    for key, file_names in all_files.items():
-        base = Path(key)
-        for f in base.rglob('*'):
-            filename = str(f.relative_to(base))
-            if f.is_file() and filename not in file_names:
+    for key, storage in storages.items()
+        for f in listdir('', storage):
+            f not in all_files[key]:
                 to_delete[key].append(filename)
 
     return to_delete
+
+
+def listdir(base, storage):
+     folders, files = storage.listdir(base)
+     for f in files:
+         yield os.path.join(base, f)
+     for folder in folders:
+         yield from listdir(os.path.join(base, folder), storage)
 
 
 def delete_files(to_delete, storages):
@@ -47,7 +53,7 @@ def delete_files(to_delete, storages):
 
 def delete_unused_files():
     f, s = get_files()
-    d = find_to_delete_files(f)
+    d = find_to_delete_files(f, s)
     delete_files(d, s)
 
 
