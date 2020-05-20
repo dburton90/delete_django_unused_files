@@ -26,8 +26,8 @@ def find_to_delete_files(all_files, storages):
 
     for key, storage in storages.items():
         for f in listdir('', storage):
-            f not in all_files[key]:
-                to_delete[key].append(filename)
+            if f not in all_files[key]:
+                to_delete[key].append(f)
 
     return to_delete
 
